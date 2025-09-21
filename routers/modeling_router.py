@@ -156,7 +156,7 @@ async def exampleModeling(
     background_tasks: BackgroundTasks,
 ):
     task_id = create_task_id()
-    work_dir = create_work_dir(task_id)
+    work_dir, _ = create_work_dir(task_id)
     example_dir = os.path.join("app", "example", "example", example_request.source)
     ic(example_dir)
     with open(os.path.join(example_dir, "questions.txt"), "r", encoding="utf-8") as f:
@@ -192,7 +192,7 @@ async def modeling(
     files: list[UploadFile] = File(default=None),
 ):
     task_id = create_task_id()
-    work_dir = create_work_dir(task_id)
+    work_dir, _ = create_work_dir(task_id)
 
     # 如果有上传文件，保存文件
     if files:

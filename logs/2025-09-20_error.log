@@ -1,0 +1,12 @@
+2025-09-20 15:35:03.650 | INFO     | app.core.llm.llm:chat:48 - subtitle是:None
+2025-09-20 15:35:04.097 | ERROR    | app.core.cli_workflow:execute:47 - CoordinatorAgent failed: litellm.AuthenticationError: AuthenticationError: OpenAIException - Incorrect API key provided: test_key. You can find your API key at https://platform.openai.com/account/api-keys.
+2025-09-20 15:36:16.750 | INFO     | app.core.llm.llm:chat:48 - subtitle是:None
+2025-09-20 15:36:17.206 | ERROR    | app.core.cli_workflow:execute:63 - CoordinatorAgent failed: litellm.AuthenticationError: AuthenticationError: OpenAIException - Incorrect API key provided: test_key. You can find your API key at https://platform.openai.com/account/api-keys.
+2025-09-20 15:38:40.421 | INFO     | app.utils.common_utils:split_footnotes:119 - main_text:Example[^1]
+ footnotes:[('1', 'Footnote content')]
+2025-09-20 15:43:41.150 | INFO     | app.utils.common_utils:split_footnotes:124 - main_text:Example
+ footnotes:[('1', 'Footnote content')]
+2025-09-20 15:44:48.593 | INFO     | app.utils.common_utils:split_footnotes:124 - main_text:Example
+ footnotes:[('1', 'Footnote content')]
+2025-09-20 15:45:52.134 | INFO     | app.utils.common_utils:split_footnotes:124 - main_text:Example
+ footnotes:[('1', 'Footnote content')]
