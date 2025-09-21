@@ -18,14 +18,18 @@ def create_task_id() -> str:
     return f"{timestamp}-{random_hash}"
 
 
-def create_work_dir(task_id: str) -> str:
+def create_work_dir(task_id: str) -> tuple[str, dict]:
     # 设置主工作目录和子目录
     work_dir = os.path.join("project", "work_dir", task_id)
+    jupyter_dir = os.path.join(work_dir, "jupyter")
+
+    dirs = {"main": work_dir, "jupyter": jupyter_dir}
 
     try:
         # 创建目录，如果目录已存在也不会报错
         os.makedirs(work_dir, exist_ok=True)
-        return work_dir
+        os.makedirs(jupyter_dir, exist_ok=True)
+        return work_dir, dirs
     except Exception as e:
         # 捕获并记录创建目录时的异常
         logger.error(f"创建工作目录失败: {str(e)}")
@@ -113,6 +117,7 @@ def split_footnotes(text: str) -> tuple[str, list[tuple[str, str]]]:
     main_text = re.sub(
         r"\n\[\^\d+\]:.*?(?=\n\[\^|\n\n|\Z)", "", text, flags=re.DOTALL
     ).strip()
+    main_text = re.sub(r"\[\^\d+\]", "", main_text)
 
     # 匹配脚注定义
     footnotes = re.findall(r"\[\^(\d+)\]:\s*(.+?)(?=\n\[\^|\n\n|\Z)", text, re.DOTALL)

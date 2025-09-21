@@ -9,11 +9,53 @@ This FastAPI service bootstraps from `main.py`, which wires the application life
 - `config/` stores TOML templates and `settings.py`; `.env.<env>` files feed runtime secrets.
 
 ## Build, Test, and Development Commands
-Create a Python 3.12 virtual environment and install the FastAPI, uvicorn, litellm, pydantic-settings, python-dotenv, redis, and pypandoc packages.
+Create a Python 3.12 virtual environment and install the dependencies from `requirements.txt`:
+```
+pip install -r requirements.txt
+```
+
+### Web Application
+To run the FastAPI server locally:
 ```
 python -m uvicorn main:app --reload
 ```
-runs the FastAPI server locally. Set `PYTHONPATH` to the repo root if the `app.*` imports fail.
+Set `PYTHONPATH` to the repo root if the `app.*` imports fail.
+
+### Command-Line Interface (CLI)
+The application now includes a command-line interface. You can run it using `python cli.py`.
+
+**CLI Usage:**
+
+*   **Configure Agent APIs:**
+    ```bash
+    # Set API key for an agent
+    python cli.py config set-api-key <agent_name> <api_key>
+
+    # Set model for an agent
+    python cli.py config set-model <agent_name> <model_name>
+
+    # Set base URL for an agent
+    python cli.py config set-base-url <agent_name> <base_url>
+    ```
+    Replace `<agent_name>` with `coordinator`, `modeler`, `coder`, or `writer`.
+
+*   **Test API Connections:**
+    ```bash
+    # Test all agents
+    python cli.py test
+
+    # Test a specific agent
+    python cli.py test --agent <agent_name>
+    ```
+
+*   **Run the Workflow:**
+    ```bash
+    python cli.py run <path_to_problem_directory>
+    ```
+    The problem directory should contain a `questions.txt` file and any necessary data files.
+
+### Testing
+To run the test suite:
 ```
 python -m unittest discover tests
 ```
